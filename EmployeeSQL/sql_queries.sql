@@ -57,3 +57,10 @@ select last_name, count(last_name) as "Last name count"
 from employees
 group by last_name
 order by "Last name count" desc; 
+
+-- bonus part 2 - compute average salary per title
+select avg(sa.salary) as "Average Salary", ti.title
+from ((employees em
+join salaries sa on (em.emp_no = sa.emp_no)) 
+join titles ti on (em.emp_title_id=ti.title_id) )
+group by title ;
